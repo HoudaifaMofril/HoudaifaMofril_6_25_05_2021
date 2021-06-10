@@ -1,5 +1,3 @@
-// ON IMPORTE LE framework EXPRESS, le package BODY-PARSER et la library JavaScript MOONGOOSE
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,13 +5,10 @@ const path = require('path');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 require('dotenv').config();
-
-//Set-Up dependance ExpressRateLimit
 
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -29,7 +24,6 @@ mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASSWOR
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
-
 
 // On set LE HEADER POUR ACCEPTER LES CONNEXIONS DE TOUTES ORIGINES ET AUTORISER TOUTES LES METHODES
 app.use((req, res, next) => {
@@ -49,6 +43,5 @@ app.use('/api/auth', userRoutes);
 
 app.use(helmet());
 app.use('/api/', rateLimit);
-
 
 module.exports = app;

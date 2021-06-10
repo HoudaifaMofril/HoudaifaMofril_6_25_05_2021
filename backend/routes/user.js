@@ -1,7 +1,7 @@
+//LOGIQUE DE ROUTING
+
 const express = require('express');
 const router = express.Router();
-
-// ON IMPORTE NOTRE CONTROLLER
 
 const userCtrl = require('../controllers/user');
 

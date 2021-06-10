@@ -2,7 +2,6 @@
 const Sauce = require('../models/sauce_schema');
 const fs = require('fs');
 
-// ROUTES POUR CREER ET ENREGISTRER SAUCES
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -18,8 +17,6 @@ exports.createSauce = (req, res, next) => {
         .catch(error => res.status(400).json({error}));
 };
 
-
-// ROUTE POUR MODIFIER UNE SAUCE AVEC SON IDENTIFIANT
 exports.modifySauce = (req,res) => {
     const sauceObject = req.file ?
         {
@@ -32,7 +29,6 @@ exports.modifySauce = (req,res) => {
         .catch( error => res.status(400).json({error}));
 };
 
-// ROUTE POUR SUPPRIMER UNE SAUCE AVEC SON IDENTIFIANT
 exports.deleteSauce = (req,res) =>{
 
     Sauce.findOne({_id: req.params.id})
@@ -47,7 +43,6 @@ exports.deleteSauce = (req,res) =>{
         .catch(error => res.status(500).json({error}));
 };
 
-// ROUTE API RECUPERER TOUTES LES SAUCES , TABLEAU DE SAUCES
 exports.getAllSauce = (req, res, next) => {
 
     Sauce.find()
@@ -55,17 +50,15 @@ exports.getAllSauce = (req, res, next) => {
         .catch(error => res.status(400).json({error}));
 };
 
-// ROUTE API POUR RECUPERER UNE SAUCE SPECIFIQUE AVEC SON ID
 exports.getOneSauce = (req,res) =>{
     Sauce.findOne({_id: req.params.id})
         .then(sauce => res.status(200).json(sauce))
         .catch(error => res.status(404).json({error}));
 };
 
-// ROUTE STATUS LIKE SAUCE
+// ROUTE LIKE/DISLIKE SAUCE
 
 exports.likeSauce = (req, res) => {
-    //L'utilisateur annule ce qu'il aime ou ce qu'il n'aime pas // On supprimer l'utilisateur du tableau correspodnant
 
     switch(req.body.like){
         case 0:
@@ -103,7 +96,7 @@ exports.likeSauce = (req, res) => {
                 .catch(error => res.status(400).json({error}));
 
             break;
-        case 1 : // Si l'utilisateur aime, on ajouter son identifiant au tableau des 'J'aime'
+        case 1 :
             Sauce.updateOne(
                 {_id: req.params.id},
                 {
@@ -118,7 +111,7 @@ exports.likeSauce = (req, res) => {
                 .catch(error => res.status(400).json({error}))
 
             break;
-        case -1: // Si l'utilisateur n'aime pas, on ajoute son identifiant au tableau des 'J'aime pas'
+        case -1: 
             Sauce.updateOne(
                 {_id: req.params.id},
                 {

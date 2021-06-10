@@ -1,8 +1,7 @@
 //LOGIQUE DE ROUTING
+
 const express = require('express');
 const router = express.Router();
-
-// ON IMPORTE NOTRE CONTROLLER
 
 const sauceCtrl = require('../controllers/sauce');
 const auth = require('../middlewares/auth');
