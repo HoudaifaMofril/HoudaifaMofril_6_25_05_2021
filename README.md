@@ -31,7 +31,7 @@ Ajouter le fichier .env et compléter les informations selon ce modèle:
 - DB_USER: Nom d'utilisateur
 - DB_PASSWORD : Mot de passe
 - DB_CLUSTER: Nom du Cluster
-- DB_NAME: Nom de la Base de donnée
+- DB_NAME: Nom de la Base de données
 
 
 ## Lancement du back-end
