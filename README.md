@@ -27,7 +27,11 @@ Installer les dépendances
 npm install
 ```
 
-Copier le fichier .env.example en le renommant .env et en complétant les informations manquantes représentés entre balise <>
+Ajouter le fichier .env et compléter les informations selon ce modèle:
+- DB_USER: Nom d'utilisateur
+- DB_PASSWORD : Mot de passe
+- DB_CLUSTER: Nom du Cluster
+- DB_NAME: Nom de la Base de donnée
 
 
 ## Lancement du back-end
